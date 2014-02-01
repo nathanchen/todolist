@@ -1,0 +1,52 @@
+@(loginForm: Form[AccountModel], useridString: String)
+
+@import helper._
+@import helper.twitterBootstrap._
+
+
+@headline = {
+Log in <small><a href="#"></a></small>
+}
+
+@header(Html(""), "Log in")
+@main(headline, "login", useridString) {
+<form class="form-horizontal" action = "@routes.Login.authenticate"
+      id="pwdForm" method="post" role="form">
+
+    @if(loginForm.hasGlobalErrors) {
+    <div class="alert alert-error">
+        @loginForm.globalError.message
+    </div>
+    }
+    <div class="form-group">
+        <label id="usernamelabel" class="col-sm-2 control-label" for="email">Email</label>
+        <div class="col-sm-4">
+            <input class="form-control" type="text" id="email" name="email"
+                   placeholder="Email">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="password">Password</label>
+        <div class="col-sm-4">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"> Remember me
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="login" type="submit" class="btn btn-primary">Login</button>
+        </div>
+    </div>
+</form>
+}
+
+

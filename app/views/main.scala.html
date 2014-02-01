@@ -1,0 +1,20 @@
+@(headline: Html, nav: String = "", userIdInSession: String = null)(content: Html)
+
+    <body>
+        @views.html.navbar(nav, userIdInSession)
+        <div class="container">
+            <div class="content">
+                <div class="page-header">
+                    <p class="lead"><h2>@headline</h2></p>
+                </div>
+                <div class="row">
+                    <div class="span14">
+                        @content
+                    </div>
+                </div>
+            </div>
+        </div>
+        @views.html.footer()
+    </body>
+</html>
+

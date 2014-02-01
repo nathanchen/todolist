@@ -1,0 +1,54 @@
+package utils;
+
+import java.security.NoSuchAlgorithmException;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+
+/**
+ * User: nathanchen
+ * Date: 29/01/2014
+ * Time: 10:12 PM
+ * Description:
+ */
+public class LogReflection
+{
+    public static void main(String[] args) throws NoSuchAlgorithmException
+    {
+        System.out.println(Encryption.md5Encryption("123456"));
+    }
+
+    public static Long tryParse(String string) {
+        if (checkNotNull(string).isEmpty()) {
+            return null;
+        }
+        boolean negative = string.charAt(0) == '-';
+        int index = negative ? 1 : 0;
+        if (index == string.length()) {
+            return null;
+        }
+        int digit = string.charAt(index++) - '0';
+        if (digit < 0 || digit > 9) {
+            return null;
+        }
+        long accum = -digit;
+        while (index < string.length()) {
+            digit = string.charAt(index++) - '0';
+            if (digit < 0 || digit > 9 || accum < Long.MIN_VALUE / 10) {
+                return null;
+            }
+            accum *= 10;
+            if (accum < Long.MIN_VALUE + digit) {
+                return null;
+            }
+            accum -= digit;
+        }
+
+        if (negative) {
+            return accum;
+        } else if (accum == Long.MIN_VALUE) {
+            return null;
+        } else {
+            return -accum;
+        }
+    }
+}
