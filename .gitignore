@@ -1,4 +1,12 @@
+!.gitignore
+# Ignore Play! working directory #
+db
+eclipse
+lib
+log
 logs
+modules
+precompiled
 project/project
 project/target
 target
@@ -12,3 +20,6 @@ dist
 /.classpath
 /.project
 /RUNNING_PID
+test-result
+server.pid
+*.eml
