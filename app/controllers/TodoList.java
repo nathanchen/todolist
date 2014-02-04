@@ -6,6 +6,7 @@ import play.mvc.Http;
 import play.mvc.Result;
 import utils.GlobalConfiguration;
 import utils.Guava;
+import views.html.todolist.showalllists;
 
 import java.util.List;
 
@@ -14,12 +15,12 @@ import java.util.List;
  */
 public class TodoList extends Controller
 {
-    public Result showAList()
+    public static Result showAList()
     {
         return null;
     }
 
-    public Result showAllLists()
+    public static Result showAllLists()
     {
         String account_id_in_session = Http.Context.current().session().get(GlobalConfiguration.USER_ID_IN_SESSION);
         Long account_id = Guava.tryParse(account_id_in_session);
@@ -27,7 +28,7 @@ public class TodoList extends Controller
         {
             return redirect(routes.Login.login());
         }
-        List<EntryModel> entryModelList = EntryModel.findTodoListModelListByAccountId(account_id);
-        return ok(showAllLists.render(entryModelList, account_id_in_session));
+        List<String> categories_for_an_account = EntryModel.findDistinctCategoryByAccountId(account_id);
+        return ok(showalllists.render(categories_for_an_account, account_id_in_session));
     }
 }

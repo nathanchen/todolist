@@ -12,3 +12,7 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 GET     /login                      controllers.Login.login()
 POST /login/authenticate            controllers.Login.authenticate()
 GET    /logout                      controllers.Login.logout()
+
+# TodoList
+GET /lists                          controllers.TodoList.showAllLists()
+POST /lists                          controllers.TodoList.showAllLists()

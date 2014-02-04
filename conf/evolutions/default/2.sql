@@ -40,7 +40,14 @@ CREATE TABLE todolist (
 
 
 insert into account values (1, "tringchen@gmail.com", "E10ADC3949BA59ABBE56E057F20F883E", "tring");
+insert into account values (2, "22@gmail.com", "E10ADC3949BA59ABBE56E057F20F883E", "22");
 insert into account_detail values (1, "tringchen", "8.8.8.8", "2014-01-01", "2014-01-01", 10, "nothing");
+insert into account_detail values (2, "22", "2.2.2.2", "2014-01-01", "2014-01-01", 10, "22");
+insert into todolist values (1, "tringchen's first cat. first entry 1", 10, "no note", 1, "Japan", "2014-01-01");
+insert into todolist values (2, "tringchen's first cat. second entry 2", 10, "no note", 1, "Japan", "2014-01-01");
+insert into todolist values (3, "tringchen's first cat. third entry 3", 10, "no note", 1, "Japan", "2014-01-01");
+insert into todolist values (4, "tringchen's second cat. first entry 1", 10, "no note", 1, "Asia", "2014-01-01");
+
 
 # --- !Downs
 

@@ -1,1 +1,19 @@
-@(entryModelList: List[EntryModel], account_id_in_session: String)
+@(categoryList: List[String], account_id_in_session: String)
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@headline = {
+    Lists!
+    <small><a href="#"></a></small>
+}
+
+@header(Html(""), title = "Posts")
+@main(headline, nav = "", account_id_in_session) {
+    @if(categoryList != null && categoryList.size() > 0){
+        <div class="row">
+            @categoryList.map { category_name =>
+                @views.html.todolist.alistuponshowalllists(category_name)}
+        </div>
+    }
+}

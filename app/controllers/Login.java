@@ -9,7 +9,6 @@ import play.mvc.Result;
 import utils.GlobalConfiguration;
 import utils.Guava;
 import views.html.login.login;
-import views.html.success;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
@@ -63,7 +62,7 @@ public class Login extends Controller
             session().clear();
             session(GlobalConfiguration.USER_NAME_IN_SESSION, accountModel.user_name);
             session(GlobalConfiguration.USER_ID_IN_SESSION, String.valueOf(accountModel.id));
-            return ok(success.render());
+            return redirect(routes.TodoList.showAllLists());
         }
         catch (NoSuchAlgorithmException e)
         {
