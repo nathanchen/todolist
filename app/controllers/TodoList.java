@@ -7,6 +7,8 @@ import play.mvc.Http;
 import play.mvc.Result;
 import utils.GlobalConfiguration;
 import utils.Guava;
+import views.html.pageNotFound;
+import views.html.todolist.showalist;
 import views.html.todolist.showalllists;
 
 import java.util.List;
@@ -31,6 +33,45 @@ public class TodoList extends Controller
         }
         List<CategoryModel> categories_names_for_an_account = findDistinctCategoryNamesByAccountId(account_id);
         return ok(showalllists.render(categories_names_for_an_account, account_id_in_session));
+    }
+
+    public static Result showAList(Long category_id)
+    {
+        String account_id_in_session = Http.Context.current().session().get(GlobalConfiguration.USER_ID_IN_SESSION);
+        Long account_id = Guava.tryParse(account_id_in_session);
+        if (account_id == null)
+        {
+            return redirect(routes.Login.login());
+        }
+
+        List<EntryModel> entryModelList = EntryModel.findEntryListByCategroyId(category_id);
+        if (entryModelList == null)
+        {
+            // forbidden
+        }
+
+        else if (entryModelList.size() < 1)
+        {
+            // empty list
+        }
+
+        else if (! allowedToView(entryModelList, account_id))
+        {
+            return ok(pageNotFound.render());
+        }
+
+        return ok(showalist.render(entryModelList, account_id_in_session));
+    }
+
+    /**
+     *
+     * @param entryModelList is not nullable or size less than 1
+     * @param account_id
+     * @return
+     */
+    private static boolean allowedToView (List<EntryModel> entryModelList, Long account_id)
+    {
+        return entryModelList.get(0).account_id.equals(account_id);
     }
 
     private static List<CategoryModel> findDistinctCategoryNamesByAccountId(Long account_id)

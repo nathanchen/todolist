@@ -61,4 +61,9 @@ public class EntryModel extends Model
         }
         return categoryIdList;
     }
+
+    public static List<EntryModel> findEntryListByCategroyId(Long category_id)
+    {
+        return find.where().eq("category_id", category_id).orderBy("create_date desc").findList();
+    }
 }

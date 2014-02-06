@@ -16,3 +16,5 @@ GET    /logout                      controllers.Login.logout()
 # TodoList
 GET /lists                          controllers.TodoList.showAllLists()
 POST /lists                          controllers.TodoList.showAllLists()
+GET /list/:id                        controllers.TodoList.showAList(id: Long)
+POST /list/:id                        controllers.TodoList.showAList(id: Long)
