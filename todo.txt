@@ -4,3 +4,9 @@
             购物单 =》在哪里；买什么；数量；价格；人民币；美金；给谁的
             等等
     动态来设定column heading
+    一种解决方案：给每种表格设定默认的10多种column，然后用户新建一个list 的时候可以来选择用到了哪些column
+    create table todolist (id, status, note, account_id, category_id)
+    通过category_id获得一个category的format，然后用这个String的format来反射得出一个bean，用这个bean来解析todolist中国年的content
+    每一个bean的数据类型用一个table来表示
+
+    解析json的时候，如果bean的属性数目大于json的属性数目会不会报错？
