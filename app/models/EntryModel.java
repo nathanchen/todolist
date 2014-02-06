@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Entity
 @Table(name="todolist")
-public class EntryModel
+public class EntryModel extends Model
 {
     @Id
     public Long id;
@@ -29,7 +29,7 @@ public class EntryModel
 
     public Long account_id;
 
-    public String category;
+    public Long category_id;
 
     public Date create_date;
 
@@ -49,16 +49,16 @@ public class EntryModel
         return find.where().eq("account_id", account_id).findList();
     }
 
-    public static List<String> findDistinctCategoryByAccountId(Long account_id)
+    public static List<Long> findDistinctCategoryByAccountId(Long account_id)
     {
-        List<SqlRow> sqlRowList = Ebean.createSqlQuery("select distinct category from todolist where account_id=:account_id")
+        List<SqlRow> sqlRowList = Ebean.createSqlQuery("select distinct category_id from todolist where account_id=:account_id")
                 .setParameter("account_id", account_id)
                 .findList();
-        List<String> categories = new ArrayList<String>(sqlRowList.size());
+        List<Long> categoryIdList = new ArrayList<Long>(sqlRowList.size());
         for (SqlRow sqlRow : sqlRowList)
         {
-            categories.add(sqlRow.getString("category"));
+            categoryIdList.add(sqlRow.getLong("category_id"));
         }
-        return categories;
+        return categoryIdList;
     }
 }

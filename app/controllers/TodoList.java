@@ -1,5 +1,6 @@
 package controllers;
 
+import models.CategoryModel;
 import models.EntryModel;
 import play.mvc.Controller;
 import play.mvc.Http;
@@ -28,7 +29,13 @@ public class TodoList extends Controller
         {
             return redirect(routes.Login.login());
         }
-        List<String> categories_for_an_account = EntryModel.findDistinctCategoryByAccountId(account_id);
-        return ok(showalllists.render(categories_for_an_account, account_id_in_session));
+        List<CategoryModel> categories_names_for_an_account = findDistinctCategoryNamesByAccountId(account_id);
+        return ok(showalllists.render(categories_names_for_an_account, account_id_in_session));
+    }
+
+    private static List<CategoryModel> findDistinctCategoryNamesByAccountId(Long account_id)
+    {
+        List<Long> idList = EntryModel.findDistinctCategoryByAccountId(account_id);
+        return CategoryModel.findCategoryNameListByIdList(idList);
     }
 }
