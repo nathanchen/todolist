@@ -63,16 +63,17 @@ CREATE TABLE tb_entry (
 );
 
 
-
-
 insert into account values (1, 'tringchen@gmail.com', 'E10ADC3949BA59ABBE56E057F20F883E', 'tring');
 insert into account values (2, '22@gmail.com', 'E10ADC3949BA59ABBE56E057F20F883E', '22');
 
 insert into account_detail values (1, 'tringchen', '8.8.8.8', '2014-01-01', '2014-01-01', 10, 'nothing');
 insert into account_detail values (2, '22', '2.2.2.2', '2014-01-01', '2014-01-01', 10, '22');
 
-INSERT INTO category VALUES (1, 1, 'Japan', 10, '2014-01-01');
-INSERT INTO category VALUES (2, 1, 'Asia', 10, '2014-01-01');
+INSERT INTO list_format VALUES (1, 'todolist', 'status,creator_id,create_date,modifier_id,note,start_date,end_date,location,content,buddies_names');
+INSERT INTO list_format VALUES (2, 'shoppinglist', 'status,creator_id,create_date,modifier_id,modify_date,item_name,quantity,item_price,total_price,toWhom,purchase_location,purchase_price,gprs_date,purchase_date,note,buddies_names');
+
+INSERT INTO category VALUES (1, 1, 'Japan', 1, 10, '2014-01-01');
+INSERT INTO category VALUES (2, 1, 'Asia', 2, 10, '2014-01-01');
 
 insert into tb_entry values (1, '{"status":10,"creator_id":1,"create_date":1391780066474,"modifier_id":null,"modify_date":null,"note":"","start_date":1391184000000,"end_date":1393603200000,"location":"","content":"work","buddies_names":""}
 ', 10, 'no note', 1, 1, '2014-01-01');
@@ -88,6 +89,6 @@ insert into tb_entry values (4, '{"status":10,"creator_id":1,"create_date":13917
 
 DROP TABLE IF EXISTS tb_entry;
 DROP TABLE IF EXISTS category;
-
+DROP TABLE IF EXISTS list_format;
 DROP TABLE IF EXISTS account_detail;
 DROP TABLE IF EXISTS account;
