@@ -79,4 +79,9 @@ public class TodoList extends Controller
         List<Long> idList = EntryModel.findDistinctCategoryByAccountId(account_id);
         return CategoryModel.findCategoryNameListByIdList(idList);
     }
+
+//    private static JsonNode parseEntryContent(String content, String category_name)
+//    {
+//
+//    }
 }

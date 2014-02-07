@@ -15,7 +15,7 @@ import java.util.List;
  * User: nathanchen Date: 31/01/2014 Time: 9:25 PM Description:
  */
 @Entity
-@Table(name="todolist")
+@Table(name="tb_entry")
 public class EntryModel extends Model
 {
     @Id
@@ -51,7 +51,7 @@ public class EntryModel extends Model
 
     public static List<Long> findDistinctCategoryByAccountId(Long account_id)
     {
-        List<SqlRow> sqlRowList = Ebean.createSqlQuery("select distinct category_id from todolist where account_id=:account_id")
+        List<SqlRow> sqlRowList = Ebean.createSqlQuery("select distinct category_id from tb_entry where account_id=:account_id")
                 .setParameter("account_id", account_id)
                 .findList();
         List<Long> categoryIdList = new ArrayList<Long>(sqlRowList.size());
