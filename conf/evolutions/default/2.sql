@@ -25,7 +25,7 @@ CREATE TABLE account_detail (
 CREATE TABLE list_format (
   id BIGINT NOT NULL ,
   list_name VARCHAR (100),
-  attributes VARCHAR (500)
+  csv_attributes VARCHAR (500)
 );
 
 CREATE TABLE category (

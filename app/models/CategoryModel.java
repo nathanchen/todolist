@@ -22,6 +22,8 @@ public class CategoryModel extends Model
 
     public String category_name;
 
+    public Long list_format_id;
+
     public int status;
 
     public Date create_date;
