@@ -1,6 +1,13 @@
 package utils;
 
+import models.viewhelper.ShoppingListBean;
+import models.viewhelper.TodoListBean;
+import org.codehaus.jackson.JsonNode;
+import org.codehaus.jackson.map.ObjectMapper;
+
+import java.math.BigDecimal;
 import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -14,7 +21,13 @@ public class LogReflection
 {
     public static void main(String[] args) throws NoSuchAlgorithmException
     {
-        System.out.println(Encryption.md5Encryption("123456"));
+        TodoListBean todoListBean = new TodoListBean(10, 1L, new Date(), null, null, "", new Date("2014/02/01"), new Date("2014/03/01"), "", "work", "");
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode node = mapper.convertValue(todoListBean, JsonNode.class);
+
+        ShoppingListBean shoppingListBean = new ShoppingListBean(10, 1L, new Date(), null, null, "cabbage", 2, new BigDecimal(20.25), new BigDecimal(40.50), "Stallar", "66# zhongyang Road", "Safeway", "", new Date("2014/02/24"), "", "");
+        node = mapper.convertValue(shoppingListBean, JsonNode.class);
+        System.out.println(node.toString());
     }
 
     public static Long tryParse(String string) {

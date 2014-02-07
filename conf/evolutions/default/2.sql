@@ -74,10 +74,14 @@ insert into account_detail values (2, '22', '2.2.2.2', '2014-01-01', '2014-01-01
 INSERT INTO category VALUES (1, 1, 'Japan', 10, '2014-01-01');
 INSERT INTO category VALUES (2, 1, 'Asia', 10, '2014-01-01');
 
-insert into tb_entry values (1, 'tringchens first cat. first entry 1', 10, 'no note', 1, 1, '2014-01-01');
-insert into tb_entry values (2, 'tringchens first cat. second entry 2', 10, 'no note', 1, 1, '2014-01-01');
-insert into tb_entry values (3, 'tringchens first cat. third entry 3', 10, 'no note', 1, 1, '2014-01-01');
-insert into tb_entry values (4, 'tringchens second cat. first entry 1', 10, 'no note', 1, 2, '2014-01-01');
+insert into tb_entry values (1, '{"status":10,"creator_id":1,"create_date":1391780066474,"modifier_id":null,"modify_date":null,"note":"","start_date":1391184000000,"end_date":1393603200000,"location":"","content":"work","buddies_names":""}
+', 10, 'no note', 1, 1, '2014-01-01');
+insert into tb_entry values (2, '{"status":20,"creator_id":1,"create_date":1391780066474,"modifier_id":null,"modify_date":null,"note":"","start_date":1391780066474,"end_date":1393603200000,"location":"Japan","content":"beofroe","buddies_names":""}
+', 10, 'no note', 1, 1, '2014-01-01');
+insert into tb_entry values (3, '{"status":10,"creator_id":1,"create_date":1391780066474,"modifier_id":null,"modify_date":null,"note":"","start_date":1391184000000,"end_date":1393603200000,"location":"Nanjing","content":"after","buddies_names":"trinddi"}
+', 10, 'no note', 1, 1, '2014-01-01');
+insert into tb_entry values (4, '{"status":10,"creator_id":1,"create_date":1391780838673,"modifier_id":null,"modify_date":null,"item_name":"cabbage","quantity":2,"item_price":20.25,"total_price":40.5,"toWhom":"Stallar","purchase_location":"66# zhongyang Road","purchase_place":"Safeway","gprs_date":"","purchase_date":1393171200000,"note":"","buddies_names":""}
+', 10, 'no note', 1, 2, '2014-01-01');
 
 
 # --- !Downs

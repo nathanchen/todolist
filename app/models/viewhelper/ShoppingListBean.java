@@ -35,11 +35,33 @@ public class ShoppingListBean
     // GPRS
     private String gprs_date;
     // when to purchase
-    private String purchase_date;
+    private Date purchase_date;
     // other notes
     private String note;
     // with whom
     private String buddies_names;
+
+    public ShoppingListBean() {}
+
+    public ShoppingListBean (int status, Long creator_id, Date create_date, Long modifier_id, Date modify_date, String item_name, int quantity, BigDecimal item_price, BigDecimal total_price, String toWhom, String purchase_location, String purchase_place, String gprs_date, Date purchase_date, String note, String buddies_names)
+    {
+        this.status = status;
+        this.creator_id = creator_id;
+        this.create_date = create_date;
+        this.modifier_id = modifier_id;
+        this.modify_date = modify_date;
+        this.item_name = item_name;
+        this.quantity = quantity;
+        this.item_price = item_price;
+        this.total_price = total_price;
+        this.toWhom = toWhom;
+        this.purchase_location = purchase_location;
+        this.purchase_place = purchase_place;
+        this.gprs_date = gprs_date;
+        this.purchase_date = purchase_date;
+        this.note = note;
+        this.buddies_names = buddies_names;
+    }
 
     public int getStatus ()
     {
@@ -171,12 +193,12 @@ public class ShoppingListBean
         this.gprs_date = gprs_date;
     }
 
-    public String getPurchase_date ()
+    public Date getPurchase_date ()
     {
         return purchase_date;
     }
 
-    public void setPurchase_date (String purchase_date)
+    public void setPurchase_date (Date purchase_date)
     {
         this.purchase_date = purchase_date;
     }

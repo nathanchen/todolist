@@ -30,6 +30,23 @@ public class TodoListBean
     // with whom
     private String buddies_names;
 
+    public TodoListBean() {}
+
+    public TodoListBean (int status, Long creator_id, Date create_date, Long modifier_id, Date modify_date, String note, Date start_date, Date end_date, String location, String content, String buddies_names)
+    {
+        this.status = status;
+        this.creator_id = creator_id;
+        this.create_date = create_date;
+        this.modifier_id = modifier_id;
+        this.modify_date = modify_date;
+        this.note = note;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.location = location;
+        this.content = content;
+        this.buddies_names = buddies_names;
+    }
+
     public int getStatus ()
     {
         return status;
