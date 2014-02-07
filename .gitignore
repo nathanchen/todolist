@@ -7,8 +7,6 @@ log
 logs
 modules
 precompiled
-project/project
-project/target
 target
 tmp
 .history
