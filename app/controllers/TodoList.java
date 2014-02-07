@@ -2,6 +2,7 @@ package controllers;
 
 import models.CategoryModel;
 import models.EntryModel;
+import models.ListFormatModel;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
@@ -44,6 +45,7 @@ public class TodoList extends Controller
             return redirect(routes.Login.login());
         }
 
+        CategoryModel categoryModel = CategoryModel.findCategoryModelById(category_id);
         List<EntryModel> entryModelList = EntryModel.findEntryListByCategroyId(category_id);
         if (entryModelList == null)
         {
@@ -58,6 +60,21 @@ public class TodoList extends Controller
         else if (! allowedToView(entryModelList, account_id))
         {
             return ok(pageNotFound.render());
+        }
+
+        ListFormatModel listFormatModel = ListFormatModel.findListFormatModelById(categoryModel.list_format_id);
+        if (listFormatModel.list_name.equals(""))
+        {
+            // 可不可以用一个接口来表示todolistBean和shoppinglistBean?
+            // 这样在view界面中，大的框架可以复用？
+        }
+        else if (listFormatModel.list_name.equals(""))
+        {
+
+        }
+        else
+        {
+            // forbidden
         }
 
         return ok(showalist.render(entryModelList, account_id_in_session));

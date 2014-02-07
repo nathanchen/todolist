@@ -38,4 +38,9 @@ public class CategoryModel extends Model
     {
         return find.where().in("id", idList).findList();
     }
+
+    public static CategoryModel findCategoryModelById(Long id)
+    {
+        return find.byId(id);
+    }
 }
