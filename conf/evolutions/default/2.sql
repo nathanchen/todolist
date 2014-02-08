@@ -25,7 +25,8 @@ CREATE TABLE account_detail (
 CREATE TABLE list_format (
   id BIGINT NOT NULL ,
   list_name VARCHAR (100),
-  csv_attributes VARCHAR (500)
+  csv_attributes VARCHAR (500),
+  CONSTRAINT pk_list_format PRIMARY KEY (id)
 );
 
 CREATE TABLE category (
@@ -47,7 +48,7 @@ CREATE TABLE category (
 
 CREATE TABLE tb_entry (
   id       BIGINT       NOT NULL,
-  content VARCHAR(255) NOT NULL,
+  content VARCHAR(5000) NOT NULL,
   status int NOT NULL ,
   note VARCHAR (255),
   account_id BIGINT       NOT NULL,
@@ -81,7 +82,7 @@ insert into tb_entry values (2, '{"status":20,"creator_id":1,"create_date":13917
 ', 10, 'no note', 1, 1, '2014-01-01');
 insert into tb_entry values (3, '{"status":10,"creator_id":1,"create_date":1391780066474,"modifier_id":null,"modify_date":null,"note":"","start_date":1391184000000,"end_date":1393603200000,"location":"Nanjing","content":"after","buddies_names":"trinddi"}
 ', 10, 'no note', 1, 1, '2014-01-01');
-insert into tb_entry values (4, '{"status":10,"creator_id":1,"create_date":1391780838673,"modifier_id":null,"modify_date":null,"item_name":"cabbage","quantity":2,"item_price":20.25,"total_price":40.5,"toWhom":"Stallar","purchase_location":"66# zhongyang Road","purchase_place":"Safeway","gprs_date":"","purchase_date":1393171200000,"note":"","buddies_names":""}
+insert into tb_entry values (4, '{"status":10,"creator_id":1,"create_date":1391780838673,"modifier_id":null,"modify_date":null,"item_name":"cabbage","quantity":2,"item_price":20.25,"total_price":40.5,"toWhom":"Stallar","purchase_location":"66# zhongyang Road","purchase_place":"Safeway","gprs_data":"","purchase_date":1393171200000,"note":"","buddies_names":""}
 ', 10, 'no note', 1, 2, '2014-01-01');
 
 

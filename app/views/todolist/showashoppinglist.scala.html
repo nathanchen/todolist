@@ -1,0 +1,35 @@
+@(shoppingListBeanList: List[viewhelper.ShoppingListBean], account_id_in_session: String)
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@headline = {
+    @shoppingListBeanList.size Entries!
+    <small><a href="#"></a></small>
+}
+
+@header(Html(""), title = "Posts")
+@main(headline, nav = "", account_id_in_session) {
+    @if(shoppingListBeanList != null && shoppingListBeanList.size() > 0){
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>status</th>
+                <th>item_name</th>
+                <th>quantity</th>
+                <th>item_price</th>
+                <th>total_price</th>
+                <th>toWhom</th>
+                <th>purchase_location</th>
+                <th>purchase_place</th>
+                <th>gprs_date</th>
+                <th>purchase_date</th>
+                <th>note</th>
+                <th>buddies_names</th>
+            </tr>
+            </thead>
+            @shoppingListBeanList.map { entry =>
+            @views.html.todolist.ashoppinglistentry(entry)}
+        </table>
+    }
+}

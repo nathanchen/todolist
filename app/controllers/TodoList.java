@@ -3,15 +3,21 @@ package controllers;
 import models.CategoryModel;
 import models.EntryModel;
 import models.ListFormatModel;
+import models.viewhelper.ShoppingListBean;
+import models.viewhelper.TodoListBean;
+import org.codehaus.jackson.map.ObjectMapper;
+import play.Logger;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
 import utils.GlobalConfiguration;
 import utils.Guava;
 import views.html.pageNotFound;
-import views.html.todolist.showalist;
 import views.html.todolist.showalllists;
+import views.html.todolist.showashoppinglist;
+import views.html.todolist.showatodolist;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -49,12 +55,12 @@ public class TodoList extends Controller
         List<EntryModel> entryModelList = EntryModel.findEntryListByCategroyId(category_id);
         if (entryModelList == null)
         {
-            // forbidden
+            return forbidden();
         }
 
         else if (entryModelList.size() < 1)
         {
-            // empty list
+            return forbidden();
         }
 
         else if (! allowedToView(entryModelList, account_id))
@@ -63,21 +69,47 @@ public class TodoList extends Controller
         }
 
         ListFormatModel listFormatModel = ListFormatModel.findListFormatModelById(categoryModel.list_format_id);
-        if (listFormatModel.list_name.equals(""))
+        ObjectMapper mapper = new ObjectMapper();
+        // TODO: 可不可以用一个接口来表示todolistBean和shoppinglistBean?
+        // TODO: 这样在view界面中，大的框架可以复用？
+        if (listFormatModel.list_name.equals("todolist"))
         {
-            // 可不可以用一个接口来表示todolistBean和shoppinglistBean?
-            // 这样在view界面中，大的框架可以复用？
+            List<TodoListBean> todoListBeanList = new ArrayList<TodoListBean>(entryModelList.size());
+            try
+            {
+                for (EntryModel entryModel : entryModelList)
+                {
+                    todoListBeanList.add(mapper.readValue(entryModel.content, TodoListBean.class));
+                }
+                return ok(showatodolist.render(todoListBeanList, account_id_in_session));
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
         }
-        else if (listFormatModel.list_name.equals(""))
+        else if (listFormatModel.list_name.equals("shoppinglist"))
         {
-
+            List<ShoppingListBean> shoppingListBeanList = new ArrayList<ShoppingListBean>(entryModelList.size());
+            try
+            {
+                for (EntryModel entryModel : entryModelList)
+                {
+                    Logger.info("entryModel.content: " + entryModel.content);
+                    shoppingListBeanList.add(mapper.readValue(entryModel.content, ShoppingListBean.class));
+                }
+                return ok(showashoppinglist.render(shoppingListBeanList, account_id_in_session));
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
         }
         else
         {
-            // forbidden
+            // list format other than shoppinglist and todolist is forbidden
         }
-
-        return ok(showalist.render(entryModelList, account_id_in_session));
+        return forbidden();
     }
 
     /**
@@ -96,9 +128,4 @@ public class TodoList extends Controller
         List<Long> idList = EntryModel.findDistinctCategoryByAccountId(account_id);
         return CategoryModel.findCategoryNameListByIdList(idList);
     }
-
-//    private static JsonNode parseEntryContent(String content, String category_name)
-//    {
-//
-//    }
 }

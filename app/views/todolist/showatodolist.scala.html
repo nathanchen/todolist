@@ -1,0 +1,30 @@
+@(todoListBeanList: List[viewhelper.TodoListBean], account_id_in_session: String)
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@headline = {
+    @todoListBeanList.size Entries!
+    <small><a href="#"></a></small>
+}
+
+@header(Html(""), title = "Posts")
+@main(headline, nav = "", account_id_in_session) {
+    @if(todoListBeanList != null && todoListBeanList.size() > 0){
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>status</th>
+                <th>start_date</th>
+                <th>end_date</th>
+                <th>location</th>
+                <th>content</th>
+                <th>note</th>
+                <th>buddies_names</th>
+            </tr>
+            </thead>
+            @todoListBeanList.map { entry =>
+                @views.html.todolist.atodolistentry(entry)}
+        </table>
+    }
+}

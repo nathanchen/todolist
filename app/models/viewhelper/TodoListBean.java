@@ -8,27 +8,27 @@ import java.util.Date;
 public class TodoListBean
 {
     // whether purchased or not
-    private int status;
+    public int status;
     // who create this entry
-    private Long creator_id;
+    public Long creator_id;
     // when it was created
-    private Date create_date;
+    public Date create_date;
     // who modify this entry
-    private Long modifier_id;
+    public Long modifier_id;
     // when it was modified
-    private Date modify_date;
+    public Date modify_date;
     // other notes
-    private String note;
+    public String note;
     // start time
-    private Date start_date;
+    public Date start_date;
     // end time
-    private Date end_date;
+    public Date end_date;
     // where this happen
-    private String location;
+    public String location;
     // what is this entry about
-    private String content;
+    public String content;
     // with whom
-    private String buddies_names;
+    public String buddies_names;
 
     public TodoListBean() {}
 

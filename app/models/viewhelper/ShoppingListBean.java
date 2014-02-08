@@ -9,41 +9,41 @@ import java.util.Date;
 public class ShoppingListBean
 {
     // whether purchased or not
-    private int status;
+    public int status;
     // who create this entry
-    private Long creator_id;
+    public Long creator_id;
     // when it was created
-    private Date create_date;
+    public Date create_date;
     // who modify this entry
-    private Long modifier_id;
+    public Long modifier_id;
     // when it was modified
-    private Date modify_date;
+    public Date modify_date;
     // what is the item's name
-    private String item_name;
+    public String item_name;
     // how many items
-    private int quantity;
+    public int quantity;
     // price for one
-    private BigDecimal item_price;
+    public BigDecimal item_price;
     // price for one * quantity
-    private BigDecimal total_price;
+    public BigDecimal total_price;
     // purchase this item for whom
-    private String toWhom;
+    public String toWhom;
     // exact location
-    private String purchase_location;
+    public String purchase_location;
     // shopper's name
-    private String purchase_place;
+    public String purchase_place;
     // GPRS
-    private String gprs_date;
+    public String gprs_data;
     // when to purchase
-    private Date purchase_date;
+    public Date purchase_date;
     // other notes
-    private String note;
+    public String note;
     // with whom
-    private String buddies_names;
+    public String buddies_names;
 
     public ShoppingListBean() {}
 
-    public ShoppingListBean (int status, Long creator_id, Date create_date, Long modifier_id, Date modify_date, String item_name, int quantity, BigDecimal item_price, BigDecimal total_price, String toWhom, String purchase_location, String purchase_place, String gprs_date, Date purchase_date, String note, String buddies_names)
+    public ShoppingListBean (int status, Long creator_id, Date create_date, Long modifier_id, Date modify_date, String item_name, int quantity, BigDecimal item_price, BigDecimal total_price, String toWhom, String purchase_location, String purchase_place, String gprs_data, Date purchase_date, String note, String buddies_names)
     {
         this.status = status;
         this.creator_id = creator_id;
@@ -57,7 +57,7 @@ public class ShoppingListBean
         this.toWhom = toWhom;
         this.purchase_location = purchase_location;
         this.purchase_place = purchase_place;
-        this.gprs_date = gprs_date;
+        this.gprs_data = gprs_data;
         this.purchase_date = purchase_date;
         this.note = note;
         this.buddies_names = buddies_names;
@@ -183,14 +183,14 @@ public class ShoppingListBean
         this.purchase_place = purchase_place;
     }
 
-    public String getGprs_date ()
+    public String getGprs_data ()
     {
-        return gprs_date;
+        return gprs_data;
     }
 
-    public void setGprs_date (String gprs_date)
+    public void setGprs_data (String gprs_data)
     {
-        this.gprs_date = gprs_date;
+        this.gprs_data = gprs_data;
     }
 
     public Date getPurchase_date ()
