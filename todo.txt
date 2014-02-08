@@ -8,5 +8,5 @@
     create table todolist (id, status, note, account_id, category_id)
     通过category_id获得一个category的format，然后用这个String的format来反射得出一个bean，用这个bean来解析todolist中国年的content
     每一个bean的数据类型用一个table来表示
-
+test
     解析json的时候，如果bean的属性数目大于json的属性数目会不会报错？
