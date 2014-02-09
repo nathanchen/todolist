@@ -1,6 +1,7 @@
 package models;
 
 import play.db.ebean.Model;
+import utils.GlobalConfiguration;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -42,5 +43,14 @@ public class CategoryModel extends Model
     public static CategoryModel findCategoryModelById(Long id)
     {
         return find.byId(id);
+    }
+
+    public static CategoryModel saveANewCategoryModel(CategoryModel categoryModel, Long account_id)
+    {
+        categoryModel.account_id = account_id;
+        categoryModel.status = GlobalConfiguration.INITIAL_CATEGORY_STATUS_OK;
+        categoryModel.create_date = new Date();
+        categoryModel.save();
+        return categoryModel;
     }
 }

@@ -7,6 +7,7 @@ import models.viewhelper.ShoppingListBean;
 import models.viewhelper.TodoListBean;
 import org.codehaus.jackson.map.ObjectMapper;
 import play.Logger;
+import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
@@ -16,6 +17,7 @@ import views.html.pageNotFound;
 import views.html.todolist.showalllists;
 import views.html.todolist.showashoppinglist;
 import views.html.todolist.showatodolist;
+import views.html.todolist.newlist;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +27,55 @@ import java.util.List;
  */
 public class TodoList extends Controller
 {
-    public static Result showAList()
+    public static Form<CategoryModel> newCategoryForm = form(CategoryModel.class);
+
+    public static Result createAList()
     {
-        return null;
+        String account_id_in_session = Http.Context.current().session().get(GlobalConfiguration.USER_ID_IN_SESSION);
+        Long account_id = Guava.tryParse(account_id_in_session);
+        if (account_id == null)
+        {
+            return redirect(routes.Login.login());
+        }
+
+        List<ListFormatModel> listFormatModelList = ListFormatModel.findAll();
+
+        if (listFormatModelList != null && listFormatModelList.size() > 0)
+        {
+            return ok(newlist.render(newCategoryForm, listFormatModelList, account_id_in_session));
+        }
+        else
+        {
+            return forbidden();
+        }
+    }
+
+    public static Result generateAList()
+    {
+        String account_id_in_session = Http.Context.current().session().get(GlobalConfiguration.USER_ID_IN_SESSION);
+        Long account_id = Guava.tryParse(account_id_in_session);
+        if (account_id == null)
+        {
+            return redirect(routes.Login.login());
+        }
+
+        Form<CategoryModel> filledForm = newCategoryForm.bindFromRequest();
+        Long list_format_id_entered = Guava.tryParse(filledForm.field("list_format_id").value());
+        String category_name_entered = filledForm.field("category_name").valueOr("");
+
+        if (list_format_id_entered == null || ListFormatModel.isAValidListFormat(list_format_id_entered))
+        {
+            filledForm.reject("Please choose a valid list");
+        }
+        else if (category_name_entered.isEmpty())
+        {
+            filledForm.reject("Please give it a name");
+        }
+        else
+        {
+            return ok();
+        }
+        return ok();
     }
 
     public static Result showAllLists()

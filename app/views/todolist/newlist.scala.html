@@ -1,0 +1,64 @@
+@(newCategoryForm: Form[CategoryModel], listFormatModelList: List[ListFormatModel], account_id_in_session: String)
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@headline = {
+    Create A List <small><a href="#"></a></small>
+}
+
+@header(Html(""), title = "Create A Post")
+@main(headline, nav = "createAList", account_id_in_session) {
+    @helper.form(action = routes.TodoList.generateAList, 'id -> "newCategoryForm") {
+        <input type="hidden" value="" name="selectCategoryValue" id="selectCategoryValue">
+        <fieldset>
+            <legend>Create a list</legend>
+            @inputText(
+                newCategoryForm("category_name"),
+                '_label -> "List name",
+                '_help -> "Please enter the list's name.",
+                '_error -> newCategoryForm.globalError
+            )
+        </fieldset>
+
+        <fieldset>
+            <legend>Choose a category</legend>
+            <select data-placeholder="Choose categories..." id="list_format_id" style="width:350px;" class="chzn-select">
+                <option value=""></option>
+                @for(i <- listFormatModelList.indices){
+                <option value="@listFormatModelList.get(i).list_name">
+                    @listFormatModelList.get(i).list_name
+                </option>
+                }
+            </select>
+        </fieldset>
+
+        <div class="actions">
+            <input type="submit" class="btn btn-primary" value="Create" id="createAList">
+            <a href="@routes.TodoList.createAList" class="btn">Cancel</a>
+        </div>
+    }
+}
+
+<script type="text/javascript">
+    $(".chzn-select").chosen();
+    $(".chzn-select-deselect").chosen({allow_single_deselect:true});
+    jQuery("#createPost").click(
+            function () {
+                var counter = 0, i = 0, data = "",
+                        input_obj = document.getElementsByTagName('li');
+                for (i = 0; i < input_obj.length; i++) {
+                    if (input_obj[i].className == 'result-selected') {
+                        counter++;
+                        data = data + " " + input_obj[i].innerHTML.trim();
+                    }
+                }
+                if (counter <= 0) {
+                    alert('There is no selection');
+                    return false;
+                }
+                $('input[id=selectCategoryValue]').val(data);
+                $('#createAPostForm').submit();
+            }
+    )
+</script>

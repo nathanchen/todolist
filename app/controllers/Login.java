@@ -39,7 +39,7 @@ public class Login extends Controller
 
         if (email_entered.isEmpty() || password_entered.isEmpty())
         {
-            filledForm.reject("email or password is incorrect");
+            return badRequestBackToLoginPage(filledForm);
         }
         try
         {

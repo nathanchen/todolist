@@ -5,6 +5,7 @@ import play.db.ebean.Model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.List;
 
 /**
  * User: nathanchen Date: 7/02/2014 Time: 2:40 PM Description:
@@ -33,8 +34,18 @@ public class ListFormatModel extends Model
         return find.byId(id);
     }
 
-    public String[] parseCsvAttributes(String csv_attributes)
+    public static String[] parseCsvAttributes(String csv_attributes)
     {
         return csv_attributes.split(",");
+    }
+
+    public static boolean isAValidListFormat(Long id)
+    {
+        return find.byId(id) != null;
+    }
+
+    public static List<ListFormatModel> findAll()
+    {
+        return find.all();
     }
 }

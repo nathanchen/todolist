@@ -9,7 +9,7 @@ CREATE TABLE account (
 );
 
 CREATE TABLE account_detail (
-  id       BIGINT       NOT NULL,
+  id       BIGINT       NOT NULL AUTO_INCREMENT,
   full_name    VARCHAR(255) ,
   ip_address      VARCHAR(20),
   enrolled_date   DATETIME     NOT NULL,
@@ -23,14 +23,14 @@ CREATE TABLE account_detail (
 );
 
 CREATE TABLE list_format (
-  id BIGINT NOT NULL ,
+  id BIGINT NOT NULL  AUTO_INCREMENT,
   list_name VARCHAR (100),
   csv_attributes VARCHAR (500),
   CONSTRAINT pk_list_format PRIMARY KEY (id)
 );
 
 CREATE TABLE category (
-  id BIGINT NOT NULL,
+  id BIGINT NOT NULL AUTO_INCREMENT,
   account_id BIGINT       NOT NULL,
   category_name VARCHAR(255) NOT NULL ,
   list_format_id BIGINT NOT NULL ,
@@ -47,7 +47,7 @@ CREATE TABLE category (
 
 
 CREATE TABLE tb_entry (
-  id       BIGINT       NOT NULL,
+  id       BIGINT       NOT NULL AUTO_INCREMENT,
   content VARCHAR(5000) NOT NULL,
   status int NOT NULL ,
   note VARCHAR (255),
