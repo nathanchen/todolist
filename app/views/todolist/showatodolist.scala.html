@@ -26,5 +26,9 @@
             @todoListBeanList.map { entry =>
                 @views.html.todolist.atodolistentry(entry)}
         </table>
+    }else{
+        @if(todoListBeanList.size() == 0){
+            nothing to show
+        }
     }
 }

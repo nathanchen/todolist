@@ -117,12 +117,7 @@ public class TodoList extends Controller
             return forbidden();
         }
 
-        else if (entryModelList.size() < 1)
-        {
-            return forbidden();
-        }
-
-        else if (! allowedToView(entryModelList, account_id))
+        else if (! allowedToView(categoryModel, account_id))
         {
             return ok(pageNotFound.render());
         }
@@ -173,13 +168,13 @@ public class TodoList extends Controller
 
     /**
      *
-     * @param entryModelList is not nullable or size less than 1
+     * @param categoryModel is not null
      * @param account_id
      * @return
      */
-    private static boolean allowedToView (List<EntryModel> entryModelList, Long account_id)
+    private static boolean allowedToView (CategoryModel categoryModel, Long account_id)
     {
-        return entryModelList.get(0).account_id.equals(account_id);
+        return categoryModel.account_id.equals(account_id);
     }
 
     private static List<CategoryModel> findDistinctCategoryNamesByAccountId(Long account_id)
