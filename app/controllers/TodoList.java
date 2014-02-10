@@ -63,23 +63,28 @@ public class TodoList extends Controller
         Long list_format_id_entered = Guava.tryParse(filledForm.field("list_format_id").value());
         String category_name_entered = filledForm.field("category_name").valueOr("");
 
-        if (list_format_id_entered == null || ListFormatModel.isAValidListFormat(list_format_id_entered))
+        if (list_format_id_entered == null || !ListFormatModel.isAValidListFormat(list_format_id_entered))
         {
-            Logger.info("Please choose a valid list");
-            filledForm.reject("Please choose a valid list");
-            List<ListFormatModel> listFormatModelList = ListFormatModel.findAll();
-            return badRequest(newlist.render(filledForm, listFormatModelList, account_id_in_session));
+            String error_message = "Please choose a valid list";
+            return badRequestBackToCreateAListPage(error_message, account_id_in_session, filledForm);
         }
         else if (category_name_entered.isEmpty())
         {
-            Logger.info("Please give it a name");
-            filledForm.reject("Please give it a name");
+            String error_message = "Please give it a name";
+            return badRequestBackToCreateAListPage(error_message, account_id_in_session, filledForm);
         }
         else
         {
             return ok("generateAList ok");
         }
-        return ok();
+    }
+
+    private static Result badRequestBackToCreateAListPage (String error_message, String account_id_in_session, Form<CategoryModel> filledForm)
+    {
+        Logger.error(error_message);
+        filledForm.reject(error_message);
+        List<ListFormatModel> listFormatModelList = ListFormatModel.findAll();
+        return badRequest(newlist.render(filledForm, listFormatModelList, account_id_in_session));
     }
 
     public static Result showAllLists()

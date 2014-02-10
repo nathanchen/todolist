@@ -10,13 +10,13 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 # Sign in
 GET     /login                      controllers.Login.login()
-POST /login/authenticate            controllers.Login.authenticate()
+POST    /login                      controllers.Login.authenticate()
 GET    /logout                      controllers.Login.logout()
 
 # TodoList
 GET /lists                          controllers.TodoList.showAllLists()
-POST /lists                          controllers.TodoList.showAllLists()
-GET /list/:id                        controllers.TodoList.showAList(id: Long)
-POST /list/:id                        controllers.TodoList.showAList(id: Long)
-GET /new                           controllers.TodoList.createAList()
-POST /newlist                       controllers.TodoList.generateAList()
+POST /lists                         controllers.TodoList.showAllLists()
+GET /list/:id                       controllers.TodoList.showAList(id: Long)
+POST /list/:id                      controllers.TodoList.showAList(id: Long)
+GET /new                            controllers.TodoList.createAList()
+POST /new                           controllers.TodoList.generateAList()
