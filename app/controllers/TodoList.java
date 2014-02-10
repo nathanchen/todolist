@@ -75,7 +75,9 @@ public class TodoList extends Controller
         }
         else
         {
-            return ok("generateAList ok");
+            // TODO insert the categoryModel into DB and redirect to edit list page
+            CategoryModel categoryModel = CategoryModel.saveANewCategoryModel(filledForm.get(), account_id);
+            return redirect(routes.TodoList.showAList(categoryModel.id));
         }
     }
 
