@@ -9,38 +9,46 @@
 
 @header(Html(""), title = "Create A Post")
 @main(headline, nav = "createAList", account_id_in_session) {
-    @helper.form(action = routes.TodoList.generateAList, 'id -> "newCategoryForm") {
-        <input type="hidden" value="" name="list_format_id" id="list_format_id">
-        <fieldset>
-            <legend>Create a list</legend>
-            @inputText(
-                newCategoryForm("category_name"),
-                '_label -> "List name",
-                '_help -> "Please enter the list's name.",
-                '_error -> newCategoryForm.globalError
-            )
-        </fieldset>
+<form class="form-horizontal" action = "@routes.TodoList.generateAList"
+      id="newCategoryForm" method="post" role="newCategoryForm">
+    <input type="hidden" value="" name="list_format_id" id="list_format_id">
+    @if(newCategoryForm.hasGlobalErrors) {
+        <div class="alert alert-error">
+            @newCategoryForm.globalError.message
+        </div>
+    }
+    <div class="form-group">
+        <label id="category_name_label" class="col-sm-2 control-label" for="category_name">List name</label>
+        <div class="col-sm-4">
+            <input class="form-control" type="text" id="category_name" name="category_name"
+                   placeholder="List name">
+        </div>
+    </div>
 
-        <fieldset>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Choose a list</label>
+        <div class="col-sm-4">
             @for(i <- listFormatModelList.indices){
-                <div class="radio">
-                    <label>
-                        @if(i == 0){
-                            <input type="radio" name="optionsRadios" class="optionsRadios" value="@listFormatModelList.get(0).id" checked>
-                        }else{
-                            <input type="radio" name="optionsRadios" class="optionsRadios" value="@listFormatModelList.get(i).id">
-                        }
-                        @listFormatModelList.get(i).list_name
-                    </label>
-                </div>
+            <div class="radio">
+                <label>
+                    @if(i == 0){
+                    <input type="radio" name="optionsRadios" class="optionsRadios" value="@listFormatModelList.get(0).id" checked>
+                    }else{
+                    <input type="radio" name="optionsRadios" class="optionsRadios" value="@listFormatModelList.get(i).id">
+                    }
+                    @listFormatModelList.get(i).list_name
+                </label>
+            </div>
             }
-        </fieldset>
+        </div>
+    </div>
 
-        <div class="actions">
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
             <input type="submit" class="btn btn-primary" value="Create" id="createAList">
             <a href="@routes.TodoList.createAList" class="btn">Cancel</a>
         </div>
-    }
+    </div>
 }
 
 <script type="text/javascript">

@@ -65,7 +65,10 @@ public class TodoList extends Controller
 
         if (list_format_id_entered == null || ListFormatModel.isAValidListFormat(list_format_id_entered))
         {
+            Logger.info("Please choose a valid list");
             filledForm.reject("Please choose a valid list");
+            List<ListFormatModel> listFormatModelList = ListFormatModel.findAll();
+            return badRequest(newlist.render(newCategoryForm, listFormatModelList, account_id_in_session));
         }
         else if (category_name_entered.isEmpty())
         {
