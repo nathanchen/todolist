@@ -68,7 +68,7 @@ public class TodoList extends Controller
             Logger.info("Please choose a valid list");
             filledForm.reject("Please choose a valid list");
             List<ListFormatModel> listFormatModelList = ListFormatModel.findAll();
-            return badRequest(newlist.render(newCategoryForm, listFormatModelList, account_id_in_session));
+            return badRequest(newlist.render(filledForm, listFormatModelList, account_id_in_session));
         }
         else if (category_name_entered.isEmpty())
         {

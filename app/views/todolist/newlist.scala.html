@@ -13,7 +13,7 @@
       id="newCategoryForm" method="post" role="newCategoryForm">
     <input type="hidden" value="" name="list_format_id" id="list_format_id">
     @if(newCategoryForm.hasGlobalErrors) {
-        <div class="alert alert-error">
+        <div class="alert alert-danger">
             @newCategoryForm.globalError.message
         </div>
     }
@@ -64,7 +64,6 @@
             }
             var data = checkbox_selection.val();
             $('input[id=list_format_id]').val(data);
-            alert(data);
             $('#newCategoryForm').submit();
         }
     )

@@ -14,7 +14,7 @@ Log in <small><a href="#"></a></small>
       id="pwdForm" method="post" role="form">
 
     @if(loginForm.hasGlobalErrors) {
-    <div class="alert alert-error">
+    <div class="alert alert-danger">
         @loginForm.globalError.message
     </div>
     }
