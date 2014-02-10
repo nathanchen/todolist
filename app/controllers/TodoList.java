@@ -69,11 +69,12 @@ public class TodoList extends Controller
         }
         else if (category_name_entered.isEmpty())
         {
+            Logger.info("Please give it a name");
             filledForm.reject("Please give it a name");
         }
         else
         {
-            return ok();
+            return ok("generateAList ok");
         }
         return ok();
     }
